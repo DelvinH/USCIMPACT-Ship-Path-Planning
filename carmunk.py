@@ -50,8 +50,8 @@ class GameState:
         self.space.gravity = pymunk.Vec2d(0., 0.)
 
         # Create own ship.
-        self.create_own_ship(self.x_0, self.y_0, self.r_0)
-        own_ship_vertices = self.get_vertices_list(self.x_0, self.y_0, self.r_0)
+        self.create_own_ship(self.path_x_0, self.path_y_0, self.path_r_0)
+        own_ship_vertices = self.get_vertices_list(self.path_x_0, self.path_y_0, self.path_r_0)
         pg.draw.polygon(self.screen, THECOLORS['green'], own_ship_vertices)
 
         # Record steps.
@@ -61,11 +61,18 @@ class GameState:
         pg.draw.polygon(self.screen, THECOLORS['red'], target_ship_vertices)
 
 
-    def create_dynamic_obs(self):
-        #inertia = pymunk.moment_for_circle(1, 0, 14, (0, 0))
+    def create_dynamic_obs(self, ts_op, path):
+        # Create body and position
         self.obs_body = pymunk.Body(pymunk.inf, pymunk.inf)
-        #r, theta = self.get_random()
-        self.obs_body.position = (0.55 + 0.25*random.random())*width, (0.3+0.4*random.random())*height
+        self.obs_body.position = (ts_op[0], ts_op[1])
+
+        # Vertices
+
+
+        # Path
+
+
+        # Old code
         self.obs_shape = pymunk.Circle(self.obs_body, 5)
         self.obs_shape = pymunk.Circle(self.obs_body, 5, (5,5))
         self.obs_shape.color = THECOLORS["red"]
